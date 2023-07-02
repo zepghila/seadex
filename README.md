@@ -25,9 +25,9 @@ cd seadex
 ```bash
 pipenv install
 ```
-4. Run the project
-There's two possible ways to do this, depending on what you want to do, either 4a or 4b
-4a. **Activate the Pipenv shell**: This allows you to work within the project's virtual environment. Any Python scripts you run or packages you install will be confined to this environment.
+4. Run the project: two possible ways to do this, either 4a or 4b
+
+    4a. **Activate the Pipenv shell**: This allows you to work within the project's virtual environment. Any Python scripts you run or packages you install will be confined to this environment.
 
     ```bash
     pipenv shell
@@ -39,7 +39,7 @@ There's two possible ways to do this, depending on what you want to do, either 4
     python main.py
     ```
 
-4b. **Run a specific command**: If you want to run a specific Python script without activating the Pipenv shell, you can use the `pipenv run` command. This is particularly useful for running single commands or for executing scripts in a production environment.
+    4b. **Run a specific command**: If you want to run a specific Python script without activating the Pipenv shell, you can use the `pipenv run` command. This is particularly useful for running single commands or for executing scripts in a production environment.
 
     ```bash
     pipenv run python main.py
