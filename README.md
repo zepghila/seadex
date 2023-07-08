@@ -2,6 +2,8 @@
 
 SeaDex is an open-source project aimed at developing a proof-of-concept tool for identifying marine species in images. The tool uses state-of-the-art image processing and machine learning techniques to segment underwater images, detect objects, and classify them into species.
 
+The live document with the project's rationale, breakdown and brainstorming/research is this Miro board: https://miro.com/app/board/uXjVM5tbPEE=/
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
