@@ -5,7 +5,7 @@ from segment_anything import SamAutomaticMaskGenerator, sam_model_registry
 import logging
 
 # Set up logging
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 def load_image(image_path):
@@ -58,6 +58,9 @@ def main():
     logger.info("Generating masks...")
     masks = generate_masks(image, model)
     mask_image = show_anns(masks)
+    
+    logger.info("Saving masks image...")
+    cv2.imwrite('images/masks.jpg', mask_image)
 
     logger.info("Overlaying masks on image...")
     overlay = overlay_masks_on_image(image, mask_image)
