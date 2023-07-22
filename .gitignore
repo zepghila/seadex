@@ -1,3 +1,7 @@
+# Project-specific
+sam_vit_h_4b8939.pth
+.DS_Store
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+torch = "*"
+torchvision = "*"
+numpy = "*"
+matplotlib = "*"
+opencv-python = "*"
+segment-anything = {git = "https://github.com/facebookresearch/segment-anything.git"}
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"

@@ -10,8 +10,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-- Python 3.x
-- pipenv
+- `Python 3.x`
+- `pipenv`
 
 ### Installation
 
@@ -27,7 +27,11 @@ cd seadex
 ```bash
 pipenv install
 ```
-4. Run the project: two possible ways to do this, either 4a or 4b
+4. Download the Segment Anything Model (SAM) from [SAM's github README](https://github.com/facebookresearch/segment-anything#readme). 
+Download the `vit_h` model directly by clicking [here](https://github.com/facebookresearch/segment-anything#readme:~:text=or%20vit_h%3A-,ViT%2DH%20SAM%20model.,-vit_l%3A%20ViT).
+This is included in `.gitignore`, being a large file (> 2Gb).
+
+5. Run the project: two possible ways to do this, either 4a or 4b
 
     4a. **Activate the Pipenv shell**: This allows you to work within the project's virtual environment. Any Python scripts you run or packages you install will be confined to this environment.
 
