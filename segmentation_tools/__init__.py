@@ -1,1 +1,1 @@
-from .segmentation import load_sam_model, generate_masks, show_anns
+from .segmentation import load_sam_model, generate_masks, show_anns, overlay_segmentation_masks_on_image, segment_SAM

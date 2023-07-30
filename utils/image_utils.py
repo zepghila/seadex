@@ -40,17 +40,6 @@ def convert_color_space_RGB2BGR(image):
         logger.error(f"Error converting color space: {e}")
         raise
 
-def overlay_masks_on_image(image, masks):
-    '''Overlays masks on an image.'''
-    try:
-        check_image_numpy(image)
-        logger.info("Overlaying masks on image...")
-        image_bgr = convert_color_space_RGB2BGR(image)
-        return cv2.addWeighted(image_bgr, 0.7, masks, 0.3, 0)
-    except Exception as e:
-        logger.error(f"Error overlaying masks on image: {e}")
-        raise
-
 def downsample_image_to_size(image, target_size_kb):
     '''Downsamples an image to a target file size in kilobytes.'''
     try:
@@ -117,19 +106,9 @@ def scale_image_to_size(image, target_width, target_height):
         logger.error(f'Error scaling image: {e}')
         raise
 
-def create_detections(result):
-    '''Creates a list of detections from a YOLO result.'''
-    detections = []
-    for box in result.boxes:
-        class_id = result.names[box.cls[0].item()]
-        cords = box.xyxy[0].tolist()
-        cords = [round(x) for x in cords]
-        conf = round(box.conf[0].item(), 2)
-        detections.append((class_id, cords, conf))
-    return detections
-
-def draw_boxes(image, detections):
+def draw_boxes_from_detections(image, detections):
     '''Draws bounding boxes on an image from a detections object'''
+    #TODO mode into detection
     for detection in detections:
         class_id, cords, conf = detection
         x1, y1, x2, y2 = cords

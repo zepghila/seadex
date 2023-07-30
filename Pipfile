@@ -11,6 +11,7 @@ matplotlib = "*"
 opencv-python = "*"
 segment-anything = {git = "https://github.com/facebookresearch/segment-anything.git"}
 pytest = "*"
+ultralytics = "*"
 
 [dev-packages]
 

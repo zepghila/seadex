@@ -1,8 +1,13 @@
-from config import sam_model_type, sam_model_checkpoint_relative_path, input_image_relative_path
-from segmentation_tools import load_sam_model, generate_masks, show_anns
-from utils.image_utils import load_image, convert_color_space_BGR2RGB, overlay_masks_on_image
-import cv2
 import logging
+
+import cv2
+
+from config import sam_model_type, sam_model_checkpoint_relative_path, input_image_relative_path, default_max_image_width
+from segmentation_tools import segment_SAM
+from object_detection_tools import object_detect_yolov8
+from utils import load_image, convert_color_space_BGR2RGB, scale_image_to_width, draw_boxes_from_detections
+
+
 
 # Set up logging
 logging.basicConfig(format='%(asctime)s - %(levelname)s - %(message)s', level=logging.INFO)
@@ -14,18 +19,22 @@ def main():
 
         image = load_image(input_image_relative_path)
         image = convert_color_space_BGR2RGB(image)
+        image = scale_image_to_width(image, default_max_image_width)
 
-        model = load_sam_model(sam_model_type, sam_model_checkpoint_relative_path)
-
-        masks = generate_masks(image, model)
-        mask_image = show_anns(masks)
+        masks_image, segmented_image = segment_SAM(image, sam_model_type, sam_model_checkpoint_relative_path) 
         
-        cv2.imwrite('images/masks.jpg', mask_image)
+        logger.info("Saving masks and segmented images...")
+        cv2.imwrite('images/masks.jpg', masks_image)
+        cv2.imwrite('images/segmented.jpg', segmented_image)
 
-        overlay = overlay_masks_on_image(image, mask_image)
+        image = segmented_image
 
-        logger.info("Saving overlay image...")
-        cv2.imwrite('images/overlay.jpg', overlay)
+        detections = object_detect_yolov8(image)
+        if detections is not None:
+            boxed_image = draw_boxes_from_detections(image, detections)
+            cv2.imwrite('images/detected.jpg', boxed_image)
+        else:
+            logger.info("No detections were made.")
 
         logger.info("Script completed.")
     except Exception as e:
